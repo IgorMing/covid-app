@@ -8,7 +8,9 @@ final countries = Countries();
 class Home extends StatelessWidget {
   final String title;
 
-  Home({this.title});
+  Home({this.title}) {
+    countries.fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +25,6 @@ class Home extends StatelessWidget {
             title: Text(countries.data[index].name),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: countries.fetch,
-        child: Icon(Icons.remove),
       ),
     );
   }
