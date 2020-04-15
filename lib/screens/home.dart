@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:covid_app/stores/countries/countries_store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-// final counter = Counter();
 final countries = Countries();
 
 class Home extends StatelessWidget {
