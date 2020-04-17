@@ -8,7 +8,7 @@ class CovidApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    String _title = 'Covid App';
+    const String _title = 'Covid App';
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
