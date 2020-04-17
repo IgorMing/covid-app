@@ -15,7 +15,7 @@ abstract class _Countries with Store {
   ObservableList<Country> data = ObservableList();
 
   static List<Country> parse(String responseBody) {
-    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    final parsed = json.decode(responseBody);
     return parsed.map<Country>((json) => Country.fromJson(json)).toList();
   }
 
@@ -24,8 +24,7 @@ abstract class _Countries with Store {
     final response = await http.get('$BASE_URL/countries');
 
     if (response.statusCode == 200) {
-      var countries = parse(response.body);
-      data.addAll(countries);
+      data.addAll(parse(response.body));
     } else {
       throw Exception('Failed to load countries');
     }
