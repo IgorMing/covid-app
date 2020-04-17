@@ -14,6 +14,9 @@ abstract class _Countries with Store {
   @observable
   ObservableList<Country> data = ObservableList();
 
+  @computed
+  int get totalCountries => data.length;
+
   static List<Country> parse(String responseBody) {
     final parsed = json.decode(responseBody);
     return parsed.map<Country>((json) => Country.fromJson(json)).toList();
