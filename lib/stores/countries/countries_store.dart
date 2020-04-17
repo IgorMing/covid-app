@@ -14,8 +14,29 @@ abstract class _Countries with Store {
   @observable
   ObservableList<Country> data = ObservableList();
 
+  @observable
+  String search = '';
+
   @computed
   int get totalCountries => data.length;
+
+  @computed
+  bool get hasCountries => totalCountries > 0;
+
+  @computed
+  List<Country> get searchedCountries {
+    if (search.isEmpty) {
+      print('empty ${search.isEmpty}');
+      return data;
+    }
+
+    print('not empty');
+
+    return data
+        .where((country) =>
+            country.name.toLowerCase().contains(search.toLowerCase()))
+        .toList();
+  }
 
   static List<Country> parse(String responseBody) {
     final parsed = json.decode(responseBody);
@@ -27,9 +48,16 @@ abstract class _Countries with Store {
     final response = await http.get('$BASE_URL/countries');
 
     if (response.statusCode == 200) {
+      data.clear();
       data.addAll(parse(response.body));
     } else {
       throw Exception('Failed to load countries');
     }
+  }
+
+  @action
+  setSearch(String value) {
+    print('searched value $value');
+    search = value;
   }
 }

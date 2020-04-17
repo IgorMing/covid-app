@@ -27,14 +27,15 @@ class Home extends StatelessWidget {
                 margin: EdgeInsets.only(top: 10),
                 child: SearchBar(
                   affectedCountries: countries.totalCountries,
+                  onChanged: countries.setSearch,
                 ),
               ),
               Expanded(
                 child: Observer(
                   builder: (_) => ListView.builder(
-                    itemCount: countries.data.length,
+                    itemCount: countries.searchedCountries.length,
                     itemBuilder: (_, int index) => ListTile(
-                      title: Text(countries.data[index].name),
+                      title: Text(countries.searchedCountries[index].name),
                     ),
                   ),
                 ),

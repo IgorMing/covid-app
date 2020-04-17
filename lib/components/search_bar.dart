@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class SearchBar extends StatelessWidget {
   final int affectedCountries;
+  final Function onChanged;
 
-  SearchBar({this.affectedCountries});
+  const SearchBar({this.affectedCountries, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class SearchBar extends StatelessWidget {
           hintText: "Search among the current $affectedCountries coutries",
           contentPadding: EdgeInsets.symmetric(horizontal: 10),
         ),
+        onChanged: onChanged,
       ),
     );
   }
