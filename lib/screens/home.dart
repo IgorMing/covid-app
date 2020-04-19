@@ -25,17 +25,19 @@ class Home extends StatelessWidget {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top: 10),
-                child: SearchBar(
-                  affectedCountries: countries.totalCountries,
-                  onChanged: countries.setSearch,
+                child: Observer(
+                  builder: (_) => SearchBar(
+                    affectedCountries: countries.totalCountries,
+                    onChanged: countries.setFilter,
+                  ),
                 ),
               ),
               Expanded(
                 child: Observer(
                   builder: (_) => ListView.builder(
-                    itemCount: countries.searchedCountries.length,
+                    itemCount: countries.filteredCountries.length,
                     itemBuilder: (_, int index) => ListTile(
-                      title: Text(countries.searchedCountries[index].name),
+                      title: Text(countries.filteredCountries[index].name),
                     ),
                   ),
                 ),

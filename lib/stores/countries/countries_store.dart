@@ -11,37 +11,34 @@ const String BASE_URL = 'https://api.covid19api.com/';
 class Countries = _Countries with _$Countries;
 
 abstract class _Countries with Store {
+  static List<Country> parse(String responseBody) {
+    final parsed = json.decode(responseBody);
+    return parsed.map<Country>((json) => Country.fromJson(json)).toList();
+  }
+
   @observable
   ObservableList<Country> data = ObservableList();
 
   @observable
-  String search = '';
+  String filter = '';
 
   @computed
   int get totalCountries => data.length;
 
   @computed
-  bool get hasCountries => totalCountries > 0;
-
-  @computed
-  List<Country> get searchedCountries {
-    if (search.isEmpty) {
-      print('empty ${search.isEmpty}');
+  List<Country> get filteredCountries {
+    if (filter.isEmpty) {
       return data;
     }
 
-    print('not empty');
-
     return data
         .where((country) =>
-            country.name.toLowerCase().contains(search.toLowerCase()))
+            country.name.toLowerCase().contains(filter.toLowerCase()))
         .toList();
   }
 
-  static List<Country> parse(String responseBody) {
-    final parsed = json.decode(responseBody);
-    return parsed.map<Country>((json) => Country.fromJson(json)).toList();
-  }
+  @action
+  setFilter(String value) => filter = value;
 
   @action
   fetch() async {
@@ -53,11 +50,5 @@ abstract class _Countries with Store {
     } else {
       throw Exception('Failed to load countries');
     }
-  }
-
-  @action
-  setSearch(String value) {
-    print('searched value $value');
-    search = value;
   }
 }
