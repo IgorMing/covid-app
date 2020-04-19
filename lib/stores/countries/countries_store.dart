@@ -17,7 +17,7 @@ abstract class _Countries with Store {
   }
 
   @observable
-  ObservableList<Country> data = ObservableList();
+  ObservableList<Country> data = ObservableList.of([]);
 
   @observable
   String filter = '';
