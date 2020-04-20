@@ -28,11 +28,11 @@ abstract class _GlobalStore with Store {
     loading = true;
     final response = await http.get('$BASE_URL/summary');
 
-    loading = false;
     if (response.statusCode == 200) {
       data = parse(response.body);
     } else {
       throw Exception('Failed to load global information');
     }
+    loading = false;
   }
 }

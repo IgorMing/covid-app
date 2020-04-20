@@ -1,3 +1,4 @@
+import 'package:covid_app/components/spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -13,35 +14,35 @@ class CountriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            child: Observer(
-              builder: (_) => SearchBar(
-                hintText:
-                    "Search among the current ${countries.totalCountries} coutries",
-                onChanged: countries.setFilter,
-              ),
-            ),
-          ),
-          Expanded(
-            child: RefreshIndicator(
-              child: Observer(
-                builder: (_) => ListView.builder(
-                  itemCount: countries.filteredCountries.length,
-                  itemBuilder: (_, int index) => ListTile(
-                    title: Text(countries.filteredCountries[index].name),
+    return Observer(
+      builder: (_) => countries.loading
+          ? Spinner()
+          : Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: SearchBar(
+                      hintText:
+                          "Search among the current ${countries.totalCountries} coutries",
+                      onChanged: countries.setFilter,
+                    ),
                   ),
-                ),
+                  Expanded(
+                    child: RefreshIndicator(
+                      onRefresh: countries.fetch,
+                      child: ListView.builder(
+                        itemCount: countries.filteredCountries.length,
+                        itemBuilder: (_, int index) => ListTile(
+                          title: Text(countries.filteredCountries[index].name),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              onRefresh: countries.fetch,
             ),
-          ),
-        ],
-      ),
     );
   }
 }
