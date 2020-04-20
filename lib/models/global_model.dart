@@ -1,12 +1,12 @@
-class Global {
+class GlobalModel {
   final int confirmedCases;
   final int deaths;
   final int recovered;
 
-  Global({this.confirmedCases, this.deaths, this.recovered});
+  GlobalModel({this.confirmedCases, this.deaths, this.recovered});
 
-  factory Global.fromJson(Map<String, dynamic> json) {
-    return Global(
+  factory GlobalModel.fromJson(Map<String, dynamic> json) {
+    return GlobalModel(
       confirmedCases: json["TotalConfirmed"],
       deaths: json["TotalDeaths"],
       recovered: json["TotalRecovered"],

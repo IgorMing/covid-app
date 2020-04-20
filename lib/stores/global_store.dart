@@ -2,20 +2,23 @@ import 'package:mobx/mobx.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-part 'global.g.dart';
+import 'package:covid_app/models/global_model.dart';
+
+part 'global_store.g.dart';
 
 const String BASE_URL = 'https://api.covid19api.com/';
 
-class Global = _Global with _$Global;
+class GlobalStore = _GlobalStore with _$GlobalStore;
 
-abstract class _Global with Store {
-  static Global parse(String responseBody) {
+abstract class _GlobalStore with Store {
+  static GlobalModel parse(String responseBody) {
     final parsed = json.decode(responseBody);
-    return parsed["Global"];
+
+    return GlobalModel.fromJson(parsed["Global"]);
   }
 
   @observable
-  Global data;
+  GlobalModel data;
 
   @action
   fetch() async {

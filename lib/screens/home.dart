@@ -1,5 +1,5 @@
 import 'package:covid_app/components/global_info.dart';
-import 'package:covid_app/screens/countries_list.dart';
+import 'package:covid_app/components/countries_list.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {

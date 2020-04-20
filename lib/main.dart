@@ -1,4 +1,4 @@
-import 'package:covid_app/screens/countries_list.dart';
+import 'package:covid_app/components/countries_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:covid_app/screens/home.dart';
@@ -6,7 +6,6 @@ import 'package:covid_app/screens/home.dart';
 void main() => runApp(CovidApp());
 
 class CovidApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     const String _title = 'Covid App';
