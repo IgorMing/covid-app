@@ -7,6 +7,10 @@ import 'package:covid_app/components/search_bar.dart';
 final countries = Countries();
 
 class CountriesList extends StatelessWidget {
+  CountriesList() {
+    countries.fetch();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,13 +28,16 @@ class CountriesList extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Observer(
-              builder: (_) => ListView.builder(
-                itemCount: countries.filteredCountries.length,
-                itemBuilder: (_, int index) => ListTile(
-                  title: Text(countries.filteredCountries[index].name),
+            child: RefreshIndicator(
+              child: Observer(
+                builder: (_) => ListView.builder(
+                  itemCount: countries.filteredCountries.length,
+                  itemBuilder: (_, int index) => ListTile(
+                    title: Text(countries.filteredCountries[index].name),
+                  ),
                 ),
               ),
+              onRefresh: countries.fetch,
             ),
           ),
         ],

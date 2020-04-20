@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 class Home extends StatelessWidget {
   final String title;
 
-  Home({this.title}) {
-    countries.fetch();
-  }
+  const Home({this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,10 @@ class Home extends StatelessWidget {
             flex: 1,
             child: GlobalInfo(),
           ),
-          Expanded(flex: 5, child: CountriesList())
+          Expanded(
+            flex: 5,
+            child: CountriesList(),
+          ),
         ],
       ),
     );

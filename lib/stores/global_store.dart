@@ -18,12 +18,17 @@ abstract class _GlobalStore with Store {
   }
 
   @observable
-  GlobalModel data;
+  GlobalModel data = GlobalModel();
+
+  @observable
+  bool loading = true;
 
   @action
   fetch() async {
+    loading = true;
     final response = await http.get('$BASE_URL/summary');
 
+    loading = false;
     if (response.statusCode == 200) {
       data = parse(response.body);
     } else {
