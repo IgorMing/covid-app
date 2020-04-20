@@ -1,3 +1,4 @@
+import 'package:covid_app/components/global_info.dart';
 import 'package:covid_app/screens/countries_list.dart';
 import 'package:flutter/material.dart';
 
@@ -14,18 +15,13 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Row(
+      body: Column(
         children: <Widget>[
           Expanded(
-            child: FlatButton(
-              padding: EdgeInsets.symmetric(vertical: 20.0),
-              color: Colors.grey[300],
-              onPressed: () {
-                Navigator.of(context).pushNamed('/countries_list');
-              },
-              child: Text('Lista de países'),
-            ),
-          )
+            flex: 1,
+            child: GlobalInfo(),
+          ),
+          Expanded(flex: 5, child: CountriesList())
         ],
       ),
     );

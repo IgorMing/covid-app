@@ -1,14 +1,14 @@
 class Country {
-  final String iso;
-  final String id;
+  final String code;
+  final String slug;
   final String name;
 
-  Country({this.name, this.id, this.iso});
+  Country({this.name, this.slug, this.code});
 
   factory Country.fromJson(Map<String, dynamic> json) {
     return Country(
-      iso: json['ISO2'],
-      id: json['Slug'],
+      code: json['CountryCode'],
+      slug: json['Slug'],
       name: json['Country'],
     );
   }

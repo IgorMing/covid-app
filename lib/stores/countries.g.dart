@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'countries_store.dart';
+part of 'countries.dart';
 
 // **************************************************************************
 // StoreGenerator

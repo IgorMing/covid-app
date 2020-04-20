@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:covid_app/models/country_model.dart';
 
-part 'countries_store.g.dart';
+part 'countries.g.dart';
 
 const String BASE_URL = 'https://api.covid19api.com/';
 
@@ -13,7 +13,9 @@ class Countries = _Countries with _$Countries;
 abstract class _Countries with Store {
   static List<Country> parse(String responseBody) {
     final parsed = json.decode(responseBody);
-    return parsed.map<Country>((json) => Country.fromJson(json)).toList();
+    return parsed["Countries"]
+        .map<Country>((json) => Country.fromJson(json))
+        .toList();
   }
 
   @observable
@@ -42,7 +44,7 @@ abstract class _Countries with Store {
 
   @action
   fetch() async {
-    final response = await http.get('$BASE_URL/countries');
+    final response = await http.get('$BASE_URL/summary');
 
     if (response.statusCode == 200) {
       data.clear();
