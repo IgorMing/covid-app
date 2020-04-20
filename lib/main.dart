@@ -1,3 +1,4 @@
+import 'package:covid_app/screens/countries_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:covid_app/screens/home.dart';
@@ -17,7 +18,11 @@ class CovidApp extends StatelessWidget {
         primaryColor: Colors.black,
         accentColor: Colors.black87,
       ),
-      home: Home(title: _title),
+      initialRoute: '/',
+      routes: {
+        '/': (_) => Home(title: _title),
+        '/countries_list': (_) => CountriesList(),
+      },
     );
   }
 }
