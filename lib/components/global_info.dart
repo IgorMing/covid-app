@@ -16,38 +16,40 @@ class GlobalInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 10.0),
-          alignment: Alignment.center,
-          child: DefaultTitle('Pelo mundo'),
-        ),
-        Expanded(
-          child: Observer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            alignment: Alignment.center,
+            child: DefaultTitle('Pelo mundo'),
+          ),
+          Observer(
             builder: (_) => global.loading
                 ? Spinner()
-                : Column(
+                : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       GlobalInfoRow(
-                        label: 'Casos Confirmados',
-                        value: global.data.confirmedCases,
-                      ),
-                      GlobalInfoRow(
-                        label: 'Total de Mortes',
+                        color: Colors.red[900],
+                        label: 'Mortes',
                         value: global.data.deaths,
                       ),
                       GlobalInfoRow(
-                        label: 'Casos recuperados',
+                        color: Colors.orange[900],
+                        label: 'Confirmados',
+                        value: global.data.confirmedCases,
+                      ),
+                      GlobalInfoRow(
+                        color: Colors.lightGreen[900],
+                        label: 'Recuperados',
                         value: global.data.recovered,
                       ),
                     ],
                   ),
           ),
-        ),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }

@@ -15,14 +15,10 @@ class Home extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
+          GlobalInfo(),
           Expanded(
-            flex: 1,
-            child: GlobalInfo(),
-          ),
-          Expanded(
-            flex: 5,
             child: CountriesList(),
-          ),
+          )
         ],
       ),
     );
