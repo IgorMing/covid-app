@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:covid_app/models/countries_model.dart';
 import 'package:mobx/mobx.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,7 +17,17 @@ abstract class _Summary with Store {
   SummaryModel data = SummaryModel();
 
   @computed
+  CountriesModel get filteredCountries =>
+      data.countries.filteredCountriesByName(filter);
+
+  @observable
+  String filter = '';
+
+  @computed
   bool get loading => data.countries == null;
+
+  @action
+  setFilter(String value) => filter = value;
 
   @action
   fetch() async {

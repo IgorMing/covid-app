@@ -23,11 +23,11 @@ class GlobalInfo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              // GlobalInfoRow(
-              //   color: Colors.red[900],
-              //   label: 'Mortes',
-              //   value: data.deaths,
-              // ),
+              GlobalInfoRow(
+                color: Colors.red[900],
+                label: 'Mortes',
+                value: data.deaths,
+              ),
               GlobalInfoRow(
                 color: Colors.orange[900],
                 label: 'Confirmados',

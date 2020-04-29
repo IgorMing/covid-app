@@ -1,17 +1,16 @@
-import 'package:covid_app/models/country_model.dart';
+import 'package:covid_app/models/countries_model.dart';
 import 'package:covid_app/models/global_model.dart';
 
 class SummaryModel {
-  GlobalModel global = GlobalModel();
-  List<CountryModel> countries = List<CountryModel>();
+  final GlobalModel global;
+  final CountriesModel countries;
 
   SummaryModel({this.global, this.countries});
 
   factory SummaryModel.fromJson(Map<String, dynamic> json) {
     List<dynamic> countries = json["Countries"];
     return SummaryModel(
-      countries:
-          countries.map((country) => CountryModel.fromJson(country)).toList(),
+      countries: CountriesModel.fromJson(countries),
       global: GlobalModel.fromJson(json["Global"]),
     );
   }

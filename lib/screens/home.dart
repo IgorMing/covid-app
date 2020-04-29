@@ -28,7 +28,10 @@ class Home extends StatelessWidget {
                 children: <Widget>[
                   GlobalInfo(summary.data.global),
                   Expanded(
-                    child: CountriesList(summary.data.countries),
+                    child: CountriesList(
+                      summary.filteredCountries,
+                      onChanged: summary.setFilter,
+                    ),
                   ),
                 ],
               );
