@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'global_store.dart';
+part of 'summary_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,39 +8,28 @@ part of 'global_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$GlobalStore on _GlobalStore, Store {
-  final _$dataAtom = Atom(name: '_GlobalStore.data');
+mixin _$Summary on _Summary, Store {
+  Computed<bool> _$loadingComputed;
 
   @override
-  GlobalModel get data {
+  bool get loading =>
+      (_$loadingComputed ??= Computed<bool>(() => super.loading)).value;
+
+  final _$dataAtom = Atom(name: '_Summary.data');
+
+  @override
+  SummaryModel get data {
     _$dataAtom.context.enforceReadPolicy(_$dataAtom);
     _$dataAtom.reportObserved();
     return super.data;
   }
 
   @override
-  set data(GlobalModel value) {
+  set data(SummaryModel value) {
     _$dataAtom.context.conditionallyRunInAction(() {
       super.data = value;
       _$dataAtom.reportChanged();
     }, _$dataAtom, name: '${_$dataAtom.name}_set');
-  }
-
-  final _$loadingAtom = Atom(name: '_GlobalStore.loading');
-
-  @override
-  bool get loading {
-    _$loadingAtom.context.enforceReadPolicy(_$loadingAtom);
-    _$loadingAtom.reportObserved();
-    return super.loading;
-  }
-
-  @override
-  set loading(bool value) {
-    _$loadingAtom.context.conditionallyRunInAction(() {
-      super.loading = value;
-      _$loadingAtom.reportChanged();
-    }, _$loadingAtom, name: '${_$loadingAtom.name}_set');
   }
 
   final _$fetchAsyncAction = AsyncAction('fetch');

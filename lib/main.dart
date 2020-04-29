@@ -1,4 +1,3 @@
-import 'package:covid_app/components/countries_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:covid_app/screens/home.dart';
@@ -20,7 +19,6 @@ class CovidApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (_) => Home(title: _title),
-        '/countries_list': (_) => CountriesList(),
       },
     );
   }

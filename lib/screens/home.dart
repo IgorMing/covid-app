@@ -1,11 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+
+import 'package:covid_app/components/spinner.dart';
 import 'package:covid_app/components/global_info.dart';
 import 'package:covid_app/components/countries_list.dart';
-import 'package:flutter/material.dart';
+import 'package:covid_app/stores/summary_store.dart';
+
+final summary = Summary();
 
 class Home extends StatelessWidget {
   final String title;
 
-  const Home({this.title});
+  Home({this.title}) {
+    summary.fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +21,18 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Column(
-        children: <Widget>[
-          GlobalInfo(),
-          Expanded(
-            child: CountriesList(),
-          )
-        ],
-      ),
+      body: Observer(builder: (_) {
+        return summary.loading
+            ? Spinner()
+            : Column(
+                children: <Widget>[
+                  GlobalInfo(summary.data.global),
+                  Expanded(
+                    child: CountriesList(summary.data.countries),
+                  ),
+                ],
+              );
+      }),
     );
   }
 }
